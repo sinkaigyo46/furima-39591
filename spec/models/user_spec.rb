@@ -39,6 +39,27 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
       end
 
+      it '英字のみのpasswordでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password 英字と数字の両方を含む6文字以上で設定してください')
+      end
+
+      it '数字のみのpasswordでは登録できない' do
+        @user.password = '111111'
+        @user.password_confirmation = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password 英字と数字の両方を含む6文字以上で設定してください')
+      end
+
+      it '全角文字を含むpasswordでは登録できない' do
+        @user.password = 'あ1a1a1a'
+        @user.password_confirmation = 'あ1a1a1a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password 英字と数字の両方を含む6文字以上で設定してください')
+      end
+
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '1234567'
@@ -51,7 +72,6 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
-
       it 'emailは@を含まないと登録できない' do
         @user.email = 'testmail'
         @user.valid?
