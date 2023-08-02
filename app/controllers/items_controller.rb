@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :edit 
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :move_to_index, only: :edit
-  before_action :move_to_signed_in, only: :new
-
+  before_action :set_item, only: [:show, :edit, :update]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -21,17 +20,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
   
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to item_path
+      redirect_to item_path(@item)
     else
       render action: :edit, status: :unprocessable_entity
    end
@@ -44,14 +40,14 @@ class ItemsController < ApplicationController
                                  :shipping_day_id, :price).merge(user_id: current_user.id)
   end
 
-  def move_to_signed_in
-    return if user_signed_in?
-    redirect_to new_user_session_path
-  end
   def move_to_index
     item = Item.find(params[:id])
     unless item.user_id == current_user.id
       redirect_to action: :index
     end
+  end
+  
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
