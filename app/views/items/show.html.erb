@@ -30,7 +30,7 @@
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
     <% end %>
 
-   <% if user_signed_in? %>
+   <% if user_signed_in? && current_user.id != @item.user_id %>
     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
     <% end %>
    
