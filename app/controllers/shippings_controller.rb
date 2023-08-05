@@ -1,18 +1,16 @@
 class ShippingsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order = Order.new
-
     return unless @item.user_id == current_user.id || @item.shipping.present?
 
     redirect_to root_path
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = Order.new(order_params)
     if @order.valid?
       pay_item
@@ -26,8 +24,8 @@ class ShippingsController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :city_town, :street_number, :building_name, :phone_number, :shipping, :prefecture_id).merge(
-      item: params[:item_id], user: current_user.id, token: params[:token]
+    params.require(:order).permit(:postal_code, :city_town, :street_number, :building_name, :phone_number, :shipping, :prefecture_id, :user_id, :item_id).merge(
+      item_id: params[:item_id], user_id: current_user.id, token: params[:token]
     )
   end
 
@@ -39,4 +37,8 @@ class ShippingsController < ApplicationController
       currency: 'jpy' # 通貨の種類（日本円）
     )
   end
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
 end
