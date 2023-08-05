@@ -6,10 +6,11 @@ class Order
     validates :item, :user, :city_town, :street_number, :token
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-    validates :phone_number, format: { with: /\A\d{10,11}\z/,message: "is invalid. Include hyphen(-)"}
+    validates :phone_number, format: { with: /\A\d{10,11}\z/,message: "is invalid. 10 to 11 digits of half-width numbers"}
    end
   
-
+  
+  
   def save
     user = User.find_by(id: self.user)
     item = Item.find_by(id: self.item)
