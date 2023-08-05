@@ -4,7 +4,6 @@ RSpec.describe Order, type: :model do
   describe '購入データの保存' do
     before do
       @order = FactoryBot.build(:order)
-
     end
 
     context '内容に問題ない場合' do
@@ -51,26 +50,23 @@ RSpec.describe Order, type: :model do
       it 'phone_numberが10文字以下だと保存できないこと' do
         @order.phone_number = '123456789'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid. 10 to 11 digits of half-width numbers")
+        expect(@order.errors.full_messages).to include('Phone number is invalid. 10 to 11 digits of half-width numbers')
       end
       it 'phone_numberが11文字以上だと保存できないこと' do
         @order.phone_number = '123456789012'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid. 10 to 11 digits of half-width numbers")
+        expect(@order.errors.full_messages).to include('Phone number is invalid. 10 to 11 digits of half-width numbers')
       end
       it 'phone_numberが全角だと保存できないこと' do
         @order.phone_number = '１２３４５６７８９０１'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid. 10 to 11 digits of half-width numbers")
+        expect(@order.errors.full_messages).to include('Phone number is invalid. 10 to 11 digits of half-width numbers')
       end
       it 'tokenが空だと保存できないこと' do
         @order.token = ''
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
       end
-  
-
-      end
-     
     end
   end
+end
