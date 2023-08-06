@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_day
   has_one_attached :image
+  has_one :shipping
 
   validates :name, :content, :user, :image, :price, presence: true
   validates :category_id, :status_id, :prefecture_id, :cost_bearer_id, :shipping_day_id, presence: true,

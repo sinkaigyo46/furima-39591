@@ -21,8 +21,11 @@ class ItemsController < ApplicationController
 
   def show
   end
-  
+
   def edit
+    return unless @item.shipping.present?
+
+    redirect_to root_path
   end
 
   def update
@@ -30,13 +33,11 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item)
     else
       render action: :edit, status: :unprocessable_entity
-   end
+    end
   end
 
   def destroy
-    if @item.user == current_user
-    @item.destroy
-    end
+    @item.destroy if @item.user == current_user
     redirect_to root_path
   end
 
@@ -49,11 +50,11 @@ class ItemsController < ApplicationController
 
   def move_to_index
     item = Item.find(params[:id])
-    unless item.user_id == current_user.id
-      redirect_to action: :index
-    end
+    return if item.user_id == current_user.id
+
+    redirect_to action: :index
   end
-  
+
   def set_item
     @item = Item.find(params[:id])
   end

@@ -1,0 +1,24 @@
+=> [32m#<Order:0x0000000111d77050[0m
+ @building_name[32m=[0m[31m[1;31m"[0m[31m東京ハイツ[1;31m"[0m[31m[0m,
+ @city_town[32m=[0m[31m[1;31m"[0m[31m東京都[1;31m"[0m[31m[0m,
+ @item_id[32m=[0m
+  [32m#<Item:0x0000000111ac3200[0m
+   id: [1;36mnil[0m,
+   name: [31m[1;31m"[0m[31m野菜生活[1;31m"[0m[31m[0m,
+   content: [31m[1;31m"[0m[31m野菜をジュースにしました[1;31m"[0m[31m[0m,
+   category_id: [1;34m2[0m,
+   status_id: [1;34m2[0m,
+   cost_bearer_id: [1;34m2[0m,
+   prefecture_id: [1;34m2[0m,
+   shipping_day_id: [1;34m2[0m,
+   price: [1;34m400[0m,
+   user_id: [1;36mnil[0m,
+   created_at: [1;36mnil[0m,
+   updated_at: [1;36mnil[0m[32m>[0m,
+ @phone_number[32m=[0m[31m[1;31m"[0m[31m12344440000[1;31m"[0m[31m[0m,
+ @postal_code[32m=[0m[31m[1;31m"[0m[31m123-4567[1;31m"[0m[31m[0m,
+ @prefecture_id[32m=[0m[1;34m2[0m,
+ @street_number[32m=[0m[31m[1;31m"[0m[31m1-1[1;31m"[0m[31m[0m,
+ @token[32m=[0m[31m[1;31m"[0m[31mtok_abcdefghijk00000000000000000[1;31m"[0m[31m[0m,
+ @user_id[32m=[0m
+  [32m#<User id: nil, name: "Arlen Rutherford", family_name: "田中", first_name: "太郎", family_name_kana: "タナカ", first_name_kana: "タロウ", birthday: "1984-11-19", email: "gayle@kozey.example", created_at: nil, updated_at: nil>[0m[32m>[0m
