@@ -24,7 +24,7 @@ class ShippingsController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :city_town, :street_number, :building_name, :phone_number,:prefecture_id).merge(
+    params.require(:order).permit(:postal_code, :city_town, :street_number, :building_name, :phone_number, :prefecture_id).merge(
       item_id: params[:item_id], user_id: current_user.id, token: params[:token]
     )
   end
@@ -37,8 +37,8 @@ class ShippingsController < ApplicationController
       currency: 'jpy' # 通貨の種類（日本円）
     )
   end
+
   def set_item
     @item = Item.find(params[:item_id])
   end
-
 end
