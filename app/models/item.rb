@@ -15,6 +15,6 @@ class Item < ApplicationRecord
   validates :category_id, :status_id, :cost_bearer_id, :prefecture_id, :shipping_day_id, numericality: { other_than: 1, message: "を選択してください" }
   end                                                                                       
   validates :price,
-            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: '300円から9999999円までの範囲で入力してください' }
-  validates :price, numericality: { only_integer: true, message: '半角数字で入力してください' }
+            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'は300円から9999999円までの範囲で入力してください' }
+  validates :price, numericality: { only_integer: true, message: 'は半角数字で入力してください' }
 end
