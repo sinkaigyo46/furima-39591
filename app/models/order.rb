@@ -7,7 +7,7 @@ class Order
     validates :token,:user_id, :item_id, :city_town, :street_number
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'は半角の数字とハイフン(-)で入力して下さい' }
     validates :prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は10から11文字の半角数字で入力してください' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は10文字から11文字の半角数字で入力してください' }
   end
 
   def save

@@ -53,17 +53,17 @@ RSpec.describe Order, type: :model do
       it 'phone_numberが10文字以下だと保存できないこと' do
         @order.phone_number = '123456789'
         @order.valid?
-        expect(@order.errors.full_messages).to include('電話番号は10から11文字の半角数字で入力してください')
+        expect(@order.errors.full_messages).to include('電話番号は10文字から11文字の半角数字で入力してください')
       end
       it 'phone_numberが11文字以上だと保存できないこと' do
         @order.phone_number = '123456789012'
         @order.valid?
-        expect(@order.errors.full_messages).to include('電話番号は10から11文字の半角数字で入力してください')
+        expect(@order.errors.full_messages).to include('電話番号は10文字から11文字の半角数字で入力してください')
       end
       it 'phone_numberが全角だと保存できないこと' do
         @order.phone_number = '１２３４５６７８９０１'
         @order.valid?
-        expect(@order.errors.full_messages).to include('電話番号は10から11文字の半角数字で入力してください')
+        expect(@order.errors.full_messages).to include('電話番号は10文字から11文字の半角数字で入力してください')
       end
       it 'tokenが空だと保存できないこと' do
         @order.token = ''
